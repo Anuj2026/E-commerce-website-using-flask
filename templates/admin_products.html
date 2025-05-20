@@ -1,0 +1,183 @@
+{% extends 'admin_layout.html' %}
+{% block body %}
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0; /* No padding to affect navbar */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #000;
+    backdrop-filter: blur(10px);
+    padding: 5px 20px; /* Adjusted padding to make the navbar thinner */
+    position: relative;
+}
+
+.navbar a {
+    color: #3498DB;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #F39C12;
+}
+
+/* Main Content Styles */
+.container {
+    padding: 20px; /* Padding to main container */
+}
+
+/* Form Styles */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: black; /* Black button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #444; /* Darken on hover */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Edit and Delete Button Styles */
+.btn-edit, .btn-delete {
+    background-color: black; /* Black buttons */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.btn-edit:hover {
+    background-color: #2980B9; /* Dark blue on hover */
+}
+
+.btn-delete:hover {
+    background-color: #C0392B; /* Red on hover */
+}
+
+
+</style>
+<div class="container">
+    <h1>Manage Products</h1>
+
+    <!-- Add Product Form -->
+    <form method="POST" action="/admin/products">
+        <label>Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Description:</label>
+        <textarea name="description"></textarea>
+
+        <label>Price:</label>
+        <input type="number" name="price" step="0.01" required>
+
+        <label>Quantity in Stock:</label>
+        <input type="number" name="qty_in_stock" required>
+
+        <label>Category ID:</label>
+        <input type="number" name="category_id" required>
+
+        <label>SKU:</label>
+        <input type="text" name="sku" required>
+
+        <label>Image URL:</label>
+        <input type="text" name="product_image">
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <!-- Display all products -->
+    <h2>Existing Products</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>SKU</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.qty_in_stock }}</td>
+                <td>{{ product.SKU }}</td>
+                <!-- Product List -->
+<td>
+    <a href="/admin/products/edit/{{ product.id }}" class="btn-edit">Edit</a>
+    <form method="POST" action="/admin/products/delete/{{ product.id }}" style="display:inline;">
+        <button type="submit" class="btn-delete">Delete</button>
+    </form>
+</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

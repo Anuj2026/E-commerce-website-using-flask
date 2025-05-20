@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<style>
+    .order-summary-container {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 800px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-summary-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .order-summary-container ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .order-summary-container li {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 10px 0;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .order-summary-container img {
+        max-width: 100px;
+        margin-right: 15px;
+        border-radius: 5px;
+    }
+
+    .order-summary-container h3 {
+        margin: 0 0 5px;
+        font-size: 1.2em;
+    }
+
+    .order-summary-container p {
+        margin: 5px 0;
+    }
+
+    .order-summary-container h2 {
+        text-align: right;
+        margin-top: 20px;
+    }
+
+    .order-summary-container .total {
+        font-size: 1.5em;
+        color: #007bff;
+    }
+</style>
+
+<div class="order-summary-container">
+    <h1>Order Summary</h1>
+    <ul>
+    {% for item in cart_items %}
+        <li>
+            <img src="{{ item.product_image }}" alt="{{ item.name }}">
+            <div>
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p>Quantity: {{ item.qty }}</p>
+                <p>Price: ₹{{ item.price }}</p>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    <h2 class="total">Total Price: ₹{{ total_price }}</h2>
+</div>
+
+{% endblock %}

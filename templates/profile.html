@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="tel"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .success-message {
+            color: green;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        
+        {% if get_flashed_messages() %}
+            <div class="success-message">{{ get_flashed_messages()[0] }}</div>
+        {% endif %}
+        
+        <form action="/profile" method="POST">
+            <h3>Personal Information</h3>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{ user['user_name'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="tel" id="phone_number" name="phone_number" value="{{ user['phone_number'] }}" required>
+            </div>
+
+            <h3>Address Information</h3>
+            <input type="hidden" name="address_id" value="{{ address['id'] }}">
+            <div class="form-group">
+                <label for="unit_number">Unit Number:</label>
+                <input type="text" id="unit_number" name="unit_number" value="{{ address['unit_number'] }}">
+            </div>
+            <div class="form-group">
+                <label for="street_number">Street Number:</label>
+                <input type="text" id="street_number" name="street_number" value="{{ address['street_number'] }}">
+            </div>
+            <div class="form-group">
+                <label for="address_line1">Address Line 1:</label>
+                <input type="text" id="address_line1" name="address_line1" value="{{ address['address_line1'] }}">
+            </div>
+            <div class="form-group">
+                <label for="address_line2">Address Line 2:</label>
+                <input type="text" id="address_line2" name="address_line2" value="{{ address['address_line2'] }}">
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" value="{{ address['city'] }}">
+            </div>
+            <div class="form-group">
+                <label for="region">Region/State:</label>
+                <input type="text" id="region" name="region" value="{{ address['region'] }}">
+            </div>
+            <div class="form-group">
+                <label for="postal_code">Postal Code:</label>
+                <input type="text" id="postal_code" name="postal_code" value="{{ address['postal_code'] }}">
+            </div>
+            <div class="form-group">
+                <label for="country_id">Country ID:</label>
+                <input type="number" id="country_id" name="country_id" value="{{ address['country_id'] }}">
+            </div>
+
+            <button type="submit" class="btn">Update Profile and Address</button>
+        </form>
+    </div>
+{% endblock %}

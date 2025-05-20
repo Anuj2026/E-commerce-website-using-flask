@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMt23cez/3paNdF+Xk5t5RFtJXJ1KElnvKePhm6" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .account-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .account-header h1 {
+            font-size: 3em;
+            color: #333;
+        }
+        .account-nav {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+        }
+        .account-nav a {
+            text-decoration: none;
+            padding: 20px 30px;
+            background-color: #000; /* Black buttons */
+            color: white;
+            border-radius: 5px;
+            font-size: 1.5em;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .account-nav a i {
+            margin-right: 10px; /* Space between icon and text */
+        }
+        .account-nav a:hover {
+            background-color: #444; /* Darken on hover */
+        }
+        .account-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .account-content h2 {
+            font-size: 2em;
+            color: #333;
+        }
+        .account-content p {
+            font-size: 1.2em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Account Header -->
+        <div class="account-header">
+            <h1>Welcome to Your Account</h1>
+        </div>
+
+        <!-- Navigation for Account -->
+        <div class="account-nav">
+            <a href="/checkout"><i class="fas fa-box"></i> Orders</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            <a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="/logout"><i class="fas fa-shopping-cart"></i> Logout</a>
+        </div>
+
+        <!-- Account Content Section -->
+        <div class="account-content">
+            <h2>Account Overview</h2>
+            <p>This is your personal account page. From here, you can manage your profile, view your orders, and check your cart.</p>
+        </div>
+    </div>
+</body>
+</html>

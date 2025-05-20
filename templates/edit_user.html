@@ -1,0 +1,117 @@
+{% extends 'admin_layout.html' %}
+{% block body %}
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background-color: #fff;
+    padding: 30px;
+    margin: 50px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"] {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: #3498DB;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Button Styles */
+button {
+    background-color: black; /* Black buttons */
+    color: white; /* White text */
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #444; /* Darken button on hover */
+}
+
+/* Additional Form Alignment */
+form > * {
+    margin-bottom: 15px; /* Space out form elements */
+}
+</style>
+<body>
+    <div class="container">
+        <h1>User Info</h1>
+
+        <form method="POST">
+            <h3>Edit User Details</h3>
+            <label for="username">Username:</label>
+            <input type="text" name="username" value="{{ user.user_name }}" required>
+        
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone_number" value="{{ user.phone_number }}" required>
+        
+            <h3>Edit Address Details</h3>
+            <label for="unit_number">Unit Number:</label>
+            <input type="text" name="unit_number" value="{{ address.unit_number }}" required>
+        
+            <label for="street_number">Street Number:</label>
+            <input type="text" name="street_number" value="{{ address.street_number }}" required>
+        
+            <label for="address_line1">Address Line 1:</label>
+            <input type="text" name="address_line1" value="{{ address.address_line1 }}" required>
+        
+            <label for="address_line2">Address Line 2:</label>
+            <input type="text" name="address_line2" value="{{ address.address_line2 }}">
+        
+            <label for="city">City:</label>
+            <input type="text" name="city" value="{{ address.city }}" required>
+        
+            <label for="region">Region:</label>
+            <input type="text" name="region" value="{{ address.region }}" required>
+        
+            <label for="postal_code">Postal Code:</label>
+            <input type="text" name="postal_code" value="{{ address.postal_code }}" required>
+        
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+{% endblock %}

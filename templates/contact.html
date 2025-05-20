@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Card</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .contact-card {
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            border: 2px solid #4CAF50;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        p {
+            margin-top: 0;
+            color: #666;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45A049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contact-card">
+    <h2>Contact Us</h2>
+    <p>Share your thoughts with us! Use the form below to provide feedback.</p>
+    <form action="/contact" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Your username" required>
+
+        <label for="feedback">Feedback:</label>
+        <textarea id="feedback" name="feedback" placeholder="Your feedback" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

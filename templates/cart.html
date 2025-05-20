@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<style>
+    .btn-remove {
+    background-color: black; /* Set the button background color to black */
+    color: white; /* Set the text color to white for contrast */
+    border: none; /* Remove default border */
+    padding: 10px 15px; /* Add padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.btn-remove:hover {
+    background-color: darkgray; /* Darker shade on hover */
+}
+.cart-container {
+    padding: 20px;
+}
+
+.cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cart-item-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.cart-item-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.btn-checkout {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Add some margin for spacing */
+}
+
+.btn-checkout:hover {
+    background-color: darkgreen; /* Darker shade on hover */
+}
+
+</style>
+    
+
+<div class="cart-container">
+    {% if cart_items %}
+        <h2>Your Shopping Cart</h2>
+        <div class="cart-items">
+            {% for item in cart_items %}
+                <div class="cart-item-card">
+                    <img src="{{ item.product_image }}" alt="{{ item.name }}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <h4>{{ item.name }}</h4>
+                        <p>Description: {{ item.description }}</p>
+                        <p>Price: ₹{{ item.price }}</p>
+                        <p>Quantity: {{ item.qty }}</p>
+                        <form action="/remove_from_cart" method="POST">
+                            <input type="hidden" name="cart_item_id" value="{{ item.cart_item_id }}">
+                            <button type="submit" class="btn-remove">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <h3>Total Price: ₹{{ total_price }}</h3>
+        <h4>You will only be charged ₹1 for this transaction.</h4>
+        
+        <form action="/checkout" method="POST">
+            <button type="submit" class="btn-checkout">Checkout!</button>
+        </form>
+        
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
